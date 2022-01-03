@@ -1,14 +1,17 @@
 package com.tenykim.kurly_assignment.src.main
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.tenykim.kurly_assignment.R
-import values.Item
+import com.tenykim.kurly_assignment.src.data.Item
 
 class RepositoryListAdapter(val repositoryList: MutableList<Item>) : RecyclerView.Adapter<RepositoryListAdapter.ViewHolder>() {
 
@@ -25,10 +28,13 @@ class RepositoryListAdapter(val repositoryList: MutableList<Item>) : RecyclerVie
 
             title.text = data.full_name
             owner.text = data.owner.login
-            url.text = data.url
+            url.text = data.html_url
 
             itemView.setOnClickListener {
                 Toast.makeText(itemView.context, "${data.full_name} clicked.", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data.html_url))
+                ContextCompat.startActivity(itemView.context, intent, null)
             }
         }
     }

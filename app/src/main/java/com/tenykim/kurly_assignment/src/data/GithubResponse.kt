@@ -1,5 +1,7 @@
 package values
 
+import com.tenykim.kurly_assignment.src.data.Item
+
 data class GithubResponse(
     val incomplete_results: Boolean,
     val items: List<Item>,

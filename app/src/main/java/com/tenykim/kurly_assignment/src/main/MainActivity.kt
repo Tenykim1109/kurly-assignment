@@ -2,22 +2,22 @@ package com.tenykim.kurly_assignment.src.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.widget.Toast
-import com.tenykim.kurly_assignment.R
-import com.tenykim.kurly_assignment.config.ApplicationClass
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tenykim.kurly_assignment.databinding.ActivityMainBinding
 import com.tenykim.kurly_assignment.service.GithubService
-import retrofit2.create
+import com.tenykim.kurly_assignment.src.data.Item
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var repoList: MutableList<Item>
+    private lateinit var repoAdapter: RepositoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+        setContentView(binding.root)
     }
 
     override fun onStart() {
@@ -26,7 +26,27 @@ class MainActivity : AppCompatActivity() {
         binding.search.setOnClickListener {
             val q = binding.keyword.text.toString()
 
+            // 검색할 때마다 새로운 결과를 보여주기 위함
+            repoList = mutableListOf()
+
             Toast.makeText(this, "Hello, Github! Your input is $q.", Toast.LENGTH_SHORT).show()
+
+            // LiveData 사용
+            val res = GithubService().getRepository(q)
+            res.observe(this, { res ->
+                res.items.let {
+                    for (item in it) {
+                        repoList.add(item)
+                    }
+                }
+
+                repoAdapter = RepositoryListAdapter(repoList)
+                binding.viewResult.apply {
+                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    adapter = repoAdapter
+                }
+
+            })
 
             // EditText clear
             binding.keyword.text.clear()

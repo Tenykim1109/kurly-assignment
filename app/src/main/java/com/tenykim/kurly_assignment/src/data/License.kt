@@ -1,4 +1,4 @@
-package values
+package com.tenykim.kurly_assignment.src.data
 
 data class License(
     val html_url: String,
