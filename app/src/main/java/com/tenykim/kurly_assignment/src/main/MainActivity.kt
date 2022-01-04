@@ -29,12 +29,10 @@ class MainActivity : AppCompatActivity() {
             // 검색할 때마다 새로운 결과를 보여주기 위함
             repoList = mutableListOf()
 
-            Toast.makeText(this, "Hello, Github! Your input is $q.", Toast.LENGTH_SHORT).show()
-
             // LiveData 사용
-            val res = GithubService().getRepository(q)
-            res.observe(this, { res ->
-                res.items.let {
+            val response = GithubService().getRepository(q)
+            response.observe(this, { response ->
+                response.items.let {
                     for (item in it) {
                         repoList.add(item)
                     }
@@ -46,6 +44,9 @@ class MainActivity : AppCompatActivity() {
                     adapter = repoAdapter
                 }
 
+                if (repoAdapter.itemCount == 0) {
+                    Toast.makeText(this, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show()
+                }
             })
 
             // EditText clear

@@ -6,7 +6,8 @@ import com.tenykim.kurly_assignment.util.RetrofitUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import values.GithubResponse
+import com.tenykim.kurly_assignment.src.data.GithubResponse
+import com.tenykim.kurly_assignment.src.data.Item
 
 
 class GithubService {

@@ -11,19 +11,27 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/black"
-        android:text="repository_title"/>
+        android:text="repository_title"
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/owner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="repository_owner"/>
+        android:text="repository_owner"
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="url"
-        android:textColor="@color/teal_700"/>
+        android:textColor="@color/teal_700"
+        android:padding="5dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"/>
 
 </LinearLayout>
