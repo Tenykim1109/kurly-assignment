@@ -22,9 +22,9 @@ class RepositoryListAdapter(val repositoryList: MutableList<Item>) : RecyclerVie
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindInfo(data: Item) {
-            val title = itemView.findViewById<TextView>(R.id.title)
-            val owner = itemView.findViewById<TextView>(R.id.owner)
-            val url = itemView.findViewById<TextView>(R.id.url)
+            val title = itemView.findViewById<TextView>(R.id.title) // Repository 이름
+            val owner = itemView.findViewById<TextView>(R.id.owner) // 소유자
+            val url = itemView.findViewById<TextView>(R.id.url) // HTTP URL
 
             title.text = data.full_name
             owner.text = data.owner.login

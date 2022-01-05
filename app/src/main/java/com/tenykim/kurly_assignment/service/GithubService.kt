@@ -13,6 +13,7 @@ import com.tenykim.kurly_assignment.src.data.Item
 class GithubService {
     private val TAG = "GithubService_MJ"
 
+    // 검색어(query)를 사용하여 Github search API와 통신
     fun getRepository(query: String) : MutableLiveData<GithubResponse> {
         val responseLiveData: MutableLiveData<GithubResponse> = MutableLiveData()
 
@@ -31,6 +32,6 @@ class GithubService {
             }
         })
 
-        return responseLiveData
+        return responseLiveData // LiveData 형태로 반환
     }
 }

@@ -15,7 +15,7 @@ class ApplicationClass : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // App
+        // 기본 Retrofit util 구성
         retrofit = Retrofit.Builder()
             .baseUrl(GITHUB_URL)
             .addConverterFactory(GsonConverterFactory.create())
